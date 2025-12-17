@@ -1,30 +1,29 @@
 import { Canvas } from '@react-three/fiber'
-import { Rig } from './components/Rig'
+import { KeyboardControls } from '@react-three/drei'
 import { World } from './components/World'
+import './index.css'
 
-function App() {
+export default function App() {
+  // Define Control Map
+  const map = [
+    { name: 'forward', keys: ['ArrowUp', 'w', 'W'] },
+    { name: 'backward', keys: ['ArrowDown', 's', 'S'] },
+    { name: 'left', keys: ['ArrowLeft', 'a', 'A'] },
+    { name: 'right', keys: ['ArrowRight', 'd', 'D'] },
+  ]
+
   return (
-    <>
-      <div className="overlay-text" style={{ top: '20px', left: '20px', fontSize: '1.5rem', fontWeight: 'bold' }}>
-        OMI CHAUHAN
-      </div>
-      <div className="overlay-text" style={{ bottom: '40px', left: '50%', transform: 'translateX(-50%)', fontSize: '1rem', opacity: 0.8 }}>
-        DRAG TO EXPLORE
+    <KeyboardControls map={map}>
+      {/* Overlay Instructions */}
+      <div className="controls-overlay">
+        <h2>WASD to Move</h2>
+        <p>Explore Omii's World</p>
       </div>
 
-      <Canvas
-        camera={{ position: [0, 5, 10], fov: 50 }}
-        shadows
-        dpr={[1, 2]} // Optimize pixel ratio
-      >
-        <color attach="background" args={['#5c5cff']} />
-        <fog attach="fog" args={['#5c5cff', 10, 40]} />
-
-        <Rig />
+      <Canvas shadows camera={{ position: [0, 8, 12], fov: 50 }}>
+        {/* Note: We REMOVED <Rig /> because the Player now controls the camera */}
         <World />
       </Canvas>
-    </>
+    </KeyboardControls>
   )
 }
-
-export default App

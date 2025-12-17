@@ -7,26 +7,35 @@ body,
   padding: 0;
   overflow: hidden;
   background-color: #5c5cff;
-  /* The Joshua Indigo */
+  /* Match the floor color */
+}
+
+/* New Overlay Logic */
+.controls-overlay {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  z-index: 100;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 10px;
+  pointer-events: none;
   font-family: 'Inter', sans-serif;
 }
 
-/* Add this to your main overlay container class */
-#root>div:first-child,
-.overlay,
-.overlay-text {
-  position: absolute;
-  pointer-events: none;
-  /* <--- CRITICAL LINE */
-  z-index: 10;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+.controls-overlay h2 {
+  margin: 0;
+  font-size: 1.2rem;
 }
 
-/* But re-enable clicking for buttons/links inside it */
-button,
-a,
-.clickable {
-  pointer-events: auto;
+.controls-overlay p {
+  margin: 5px 0 0;
+  opacity: 0.8;
+}
+
+/* Keep pointer events on interaction */
+canvas {
+  touch-action: none;
+  /* Prevents mobile scrolling */
 }
