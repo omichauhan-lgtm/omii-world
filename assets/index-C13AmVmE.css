@@ -1,0 +1,1 @@
+html,body,#root{width:100%;height:100%;margin:0;padding:0;overflow:hidden;background-color:#5c5cff;font-family:Inter,sans-serif}#root>div:first-child,.overlay,.overlay-text{position:absolute;pointer-events:none;z-index:10;color:#fff;text-transform:uppercase;letter-spacing:2px}button,a,.clickable{pointer-events:auto}
