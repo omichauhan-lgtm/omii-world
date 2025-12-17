@@ -1,14 +1,6 @@
 import { useMemo } from 'react'
 import * as THREE from 'three'
-import { Text } from '@react-three/drei'
-
-// Projects data from user_context
-const projects = [
-    { title: "LoanRiskX", desc: "FinTech SaaS / FastAPI", color: "#ff6b6b", pos: [-4, 2, -5] },
-    { title: "Meta-Sim", desc: "Phase Simulator", color: "#4ecdc4", pos: [5, 1, -8] },
-    { title: "Rajputana", desc: "Brand Identity", color: "#ffe66d", pos: [-3, -2, -2] },
-    { title: "Data Pipeline", desc: "Analytics / Pandas", color: "#1a535c", pos: [4, -3, -4] }
-]
+import { EducationShop, ExperienceShop, SkillsShop } from './ShopLayouts'
 
 export function World() {
     // Terrain Generation
@@ -51,6 +43,15 @@ export function World() {
 
     return (
         <group>
+            {/* 1. The Beginning (Education) - Placed to the Left */}
+            <EducationShop position={[-8, 0, -5]} />
+
+            {/* 2. The Job (Experience) - Placed to the Right */}
+            <ExperienceShop position={[8, 0, -2]} />
+
+            {/* 3. The Core Identity (Summary) - Center Stage */}
+            <SkillsShop position={[0, 0, -10]} />
+
             {/* Terrain */}
             <mesh geometry={terrainGeometry} receiveShadow>
                 <meshStandardMaterial
@@ -73,36 +74,6 @@ export function World() {
                         <coneGeometry args={[1, 2, 6]} />
                         <meshStandardMaterial color="#ffffff" flatShading />
                     </mesh>
-                </group>
-            ))}
-
-            {/* Projects */}
-            {projects.map((proj, i) => (
-                <group key={i} position={proj.pos}>
-                    <mesh position={[0, 1, 0]}>
-                        <boxGeometry args={[1, 1, 1]} />
-                        <meshStandardMaterial color={proj.color} />
-                    </mesh>
-                    <Text
-                        position={[0, 2, 0]}
-                        fontSize={0.5}
-                        color="white"
-                        anchorX="center"
-                        anchorY="middle"
-                        outlineWidth={0.05}
-                        outlineColor="#5c5cff"
-                    >
-                        {proj.title}
-                    </Text>
-                    <Text
-                        position={[0, 1.5, 0]}
-                        fontSize={0.25}
-                        color="#eeeeee"
-                        anchorX="center"
-                        anchorY="middle"
-                    >
-                        {proj.desc}
-                    </Text>
                 </group>
             ))}
 
