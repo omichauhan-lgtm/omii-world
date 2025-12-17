@@ -19,7 +19,7 @@
 
     <div class="intro-content">
       <div class="logo-container">
-        <h1 class="game-title">OMII <span class="highlight">WORLD</span></h1>
+        <h1 class="game-title">OMI'S <span class="highlight">WORLD</span></h1>
         <p class="subtitle">PORTFOLIO SIMULATION v2.0</p>
       </div>
 
@@ -29,7 +29,7 @@
       <p id="status-text">SYSTEM BOOTING...</p>
 
       <button id="start-btn" class="hidden">
-        <span>PRESS START TO ENTER</span>
+        <span>PRESS ENTER TO START</span>
       </button>
     </div>
   </div>
@@ -51,6 +51,8 @@
       const progressBar = document.getElementById('progress-bar');
       const statusText = document.getElementById('status-text');
       const audio = document.getElementById('bg-audio');
+
+      let isEntered = false;
 
       // 1. FAKE LOADING SEQUENCE
       let progress = 0;
@@ -77,17 +79,20 @@
         statusText.style.display = 'none'; // Clean up UI
       }
 
-      // 2. THE AUDIO FIX & ENTER SEQUENCE
-      startBtn.addEventListener('click', async () => {
+      // 2. CONSOLIDATED ENTRY LOGIC
+      const handleEnter = async () => {
+        if (isEntered || progress < 100) return;
+        isEntered = true;
+
+        console.log("Entering Omi's World...");
+
         // A. Handle Audio SAFELY
         try {
           audio.volume = 0.5;
-          // We leave the promise handling to async/await to prevent race conditions
           await audio.play();
           console.log("Audio playing successfully");
         } catch (err) {
-          console.error("Audio failed (likely blocked by strict browser settings):", err);
-          // We proceed anyway so they can see the site
+          console.error("Audio failed (likely blocked by browser settings):", err);
         }
 
         // B. Trigger the "Warp" Animation
@@ -97,6 +102,15 @@
         setTimeout(() => {
           introScreen.style.display = 'none';
         }, 1500);
+      };
+
+      // 3. LISTENERS (Click & Key)
+      startBtn.addEventListener('click', handleEnter);
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          handleEnter();
+        }
       });
     });
   </script>
