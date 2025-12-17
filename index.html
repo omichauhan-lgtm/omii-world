@@ -1,91 +1,94 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/omii-world/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>omii-world</title>
-    <!-- GAME FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/omii-world/assets/index-D3rgj73x.js"></script>
-    <link rel="stylesheet" crossorigin href="/omii-world/assets/index-Bx2BBxWX.css">
-  </head>
-  <body>
-    <!-- LOADER UI -->
-    <div id="game-loader">
-        <div class="loader-content">
-            <h1 class="glitch" data-text="INITIALIZING SYSTEM...">INITIALIZING SYSTEM...</h1>
-            
-            <div class="loading-bar-container">
-                <div id="loading-bar" class="loading-bar"></div>
-            </div>
-            
-            <p id="loading-text">Connecting to Server...</p>
-            
-            <button id="enter-btn" class="hidden">>> PRESS START TO ENTER <<</button>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/omii-world/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>omii-world</title>
+  <!-- GAME FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/omii-world/assets/index-D3rgj73x.js"></script>
+  <link rel="stylesheet" crossorigin href="/omii-world/assets/index-Bx2BBxWX.css">
+</head>
+
+<body>
+  <!-- LOADER UI -->
+  <div id="game-loader">
+    <div class="loader-content">
+      <h1 class="glitch" data-text="INITIALIZING SYSTEM...">INITIALIZING SYSTEM...</h1>
+
+      <div class="loading-bar-container">
+        <div id="loading-bar" class="loading-bar"></div>
+      </div>
+
+      <p id="loading-text">Connecting to Server...</p>
+
+      <button id="enter-btn" class="hidden">PRESS START TO ENTER</button>
     </div>
+  </div>
 
-    <audio id="bg-music" loop>
-        <source src="fight-club.mp3" type="audio/mpeg">
-    </audio>
+  <audio id="bg-music" loop>
+    <source src="fight-club.mp3" type="audio/mpeg">
+  </audio>
 
-    <div id="root"></div>
+  <div id="root"></div>
 
-    <!-- LOADING LOGIC -->
-    <script>
+  <!-- LOADING LOGIC -->
+  <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const loader = document.getElementById('game-loader');
-        const bar = document.getElementById('loading-bar');
-        const text = document.getElementById('loading-text');
-        const btn = document.getElementById('enter-btn');
-        const music = document.getElementById('bg-music');
-        
-        let progress = 0;
-        
-        // CUSTOM LOADING MESSAGES
-        const messages = [
-            "Initializing Omii-World...",
-            "Loading Metallurgy Assets...",
-            "Compiling Data Structures...",
-            "Optimizing 3D Environment...",
-            "Establishing Secure Connection..."
-        ];
+      const loader = document.getElementById('game-loader');
+      const bar = document.getElementById('loading-bar');
+      const text = document.getElementById('loading-text');
+      const btn = document.getElementById('enter-btn');
+      const music = document.getElementById('bg-music');
 
-        // 1. SIMULATE LOADING PROCESS
-        const interval = setInterval(() => {
-            progress += Math.floor(Math.random() * 5) + 1; 
-            
-            if (progress > 100) progress = 100;
-            
-            bar.style.width = `${progress}%`;
-            
-            if (progress < 30) text.innerText = messages[0];
-            else if (progress < 60) text.innerText = messages[1];
-            else if (progress < 90) text.innerText = messages[2];
-            else text.innerText = messages[4];
+      let progress = 0;
 
-            // 2. LOADING COMPLETE
-            if (progress === 100) {
-                clearInterval(interval);
-                text.innerText = ">> SYSTEM READY <<";
-                text.style.color = "#00ff41";
-                btn.classList.remove('hidden');
-            }
-        }, 60);
+      // CUSTOM LOADING MESSAGES
+      const messages = [
+        "Initializing Omii-World...",
+        "Loading Metallurgy Assets...",
+        "Compiling Data Structures...",
+        "Optimizing 3D Environment...",
+        "Establishing Secure Connection..."
+      ];
 
-        // 3. ENTER BUTTON CLICK
-        btn.addEventListener('click', () => {
-            music.volume = 0.3; 
-            music.play().catch(e => console.log("Audio error:", e));
+      // 1. SIMULATE LOADING PROCESS
+      const interval = setInterval(() => {
+        progress += Math.floor(Math.random() * 5) + 1;
 
-            loader.style.opacity = '0';
-            
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 800);
-        });
+        if (progress > 100) progress = 100;
+
+        bar.style.width = `${progress}%`;
+
+        if (progress < 30) text.innerText = messages[0];
+        else if (progress < 60) text.innerText = messages[1];
+        else if (progress < 90) text.innerText = messages[2];
+        else text.innerText = messages[4];
+
+        // 2. LOADING COMPLETE
+        if (progress === 100) {
+          clearInterval(interval);
+          text.innerText = ">> SYSTEM READY <<";
+          text.style.color = "#00ff41";
+          btn.classList.remove('hidden');
+        }
+      }, 60);
+
+      // 3. ENTER BUTTON CLICK
+      btn.addEventListener('click', () => {
+        music.volume = 0.3;
+        music.play().catch(e => console.log("Audio error:", e));
+
+        loader.style.opacity = '0';
+
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 800);
+      });
     });
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>
