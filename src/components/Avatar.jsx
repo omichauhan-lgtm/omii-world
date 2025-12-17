@@ -30,7 +30,7 @@ export function Avatar({ isMoving }) {
             {/* VISOR (Glowing) */}
             <mesh position={[0, 1.4, 0.21]}>
                 <planeGeometry args={[0.4, 0.2]} />
-                <meshStandardMaterial color="#00ffcc" emissive="#00ffcc" emissiveIntensity={0.8} />
+                <meshStandardMaterial color="#00ffcc" emissive="#00ffcc" emissiveIntensity={2} />
             </mesh>
             {/* ANTENNA */}
             <mesh position={[0.25, 1.65, 0]}>
@@ -57,11 +57,11 @@ export function Avatar({ isMoving }) {
             {/* JET FLAMES (Only visible when moving?) - We keep them static for style */}
             <mesh position={[-0.1, 0.5, -0.25]} rotation={[Math.PI, 0, 0]}>
                 <coneGeometry args={[0.05, 0.2, 8]} />
-                <meshStandardMaterial color="orange" emissive="orange" emissiveIntensity={2} />
+                <meshStandardMaterial color="orange" emissive="orange" emissiveIntensity={3} />
             </mesh>
             <mesh position={[0.1, 0.5, -0.25]} rotation={[Math.PI, 0, 0]}>
                 <coneGeometry args={[0.05, 0.2, 8]} />
-                <meshStandardMaterial color="orange" emissive="orange" emissiveIntensity={2} />
+                <meshStandardMaterial color="orange" emissive="orange" emissiveIntensity={3} />
             </mesh>
 
             {/* ARMS (Floating detached style) */}

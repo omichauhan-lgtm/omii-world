@@ -8,6 +8,7 @@ import {
 } from './ShopLayouts'
 import { Player } from './Player'
 import * as THREE from 'three'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
 
 export function World() {
     const RADIUS = 15 // Distance of shops from center
@@ -51,6 +52,16 @@ export function World() {
 
             {/* Instructions on Floor */}
             <gridHelper args={[80, 80, 0xaaaaaa, 0x6666ff]} position={[0, 0.01, 0]} />
+
+            {/* POST PROCESSING EFFECTS */}
+            <EffectComposer>
+                <Bloom
+                    luminanceThreshold={1} // Only glow very bright things
+                    mipmapBlur             // Soft glow look
+                    intensity={1.5}        // How strong the glow is
+                    radius={0.6}           // How far the glow spreads
+                />
+            </EffectComposer>
         </group>
     )
 }

@@ -46,7 +46,7 @@ export function SummaryPlaza({ position }) {
             {/* Glowing Ring */}
             <mesh position={[0, 0.2, 0]} rotation={[-Math.PI / 2, 0, 0]}>
                 <ringGeometry args={[3.5, 3.8, 64]} />
-                <meshBasicMaterial color="#00ffcc" />
+                <meshBasicMaterial color="#00ffcc" toneMapped={false} />
             </mesh>
 
             <Label
@@ -88,7 +88,7 @@ export function EducationZone({ position }) {
             {/* Floating Book Hologram */}
             <mesh position={[0, 2.5, -0.5]} rotation={[0.5, 0, 0]}>
                 <boxGeometry args={[2, 2.5, 0.3]} />
-                <meshStandardMaterial color="#44f" emissive="#22a" />
+                <meshStandardMaterial color="#44f" emissive="#22a" emissiveIntensity={2} />
             </mesh>
 
             <Label
@@ -117,7 +117,7 @@ export function ExperienceZone({ position }) {
             {[-1, 1, 3].map((y, i) => (
                 <mesh key={i} position={[0, y, 1.51]}>
                     <planeGeometry args={[2.5, 0.2]} />
-                    <meshBasicMaterial color="#00ffcc" />
+                    <meshBasicMaterial color="#00ffcc" toneMapped={false} />
                 </mesh>
             ))}
 
@@ -128,7 +128,7 @@ export function ExperienceZone({ position }) {
             </mesh>
             <mesh position={[0, 8.2, 0]}>
                 <boxGeometry args={[1, 0.1, 1]} />
-                <meshBasicMaterial color="red" />
+                <meshBasicMaterial color="red" toneMapped={false} />
             </mesh>
 
             <Label
@@ -162,7 +162,7 @@ export function SkillsZone({ position }) {
             {/* Glowing Circuit Lines */}
             <mesh position={[0, 2, 1.51]}>
                 <planeGeometry args={[2, 3]} />
-                <meshStandardMaterial color="#0f0" emissive="#0f0" wireframe />
+                <meshStandardMaterial color="#0f0" emissive="#0f0" emissiveIntensity={2} wireframe />
             </mesh>
 
             {/* Floating Data Rings */}
@@ -170,7 +170,7 @@ export function SkillsZone({ position }) {
                 {[1, 2, 3].map((i) => (
                     <mesh key={i} rotation={[Math.PI / 2, 0, i]}>
                         <torusGeometry args={[2 + i * 0.5, 0.1, 16, 100]} />
-                        <meshStandardMaterial color="#00ff00" emissive="#00ff00" />
+                        <meshStandardMaterial color="#00ff00" emissive="#00ff00" emissiveIntensity={2} />
                     </mesh>
                 ))}
             </group>
@@ -207,7 +207,7 @@ export function CertificationZone({ position }) {
             {/* Floating Trophies */}
             <mesh position={[0, 1.5, 0]}>
                 <octahedronGeometry args={[1]} />
-                <meshStandardMaterial color="cyan" emissive="cyan" wireframe />
+                <meshStandardMaterial color="cyan" emissive="cyan" emissiveIntensity={2} wireframe />
             </mesh>
 
             <Label
@@ -240,7 +240,7 @@ export function ContactZone({ position }) {
             {/* Blinking Light */}
             <mesh position={[0, 5, 0.5]}>
                 <sphereGeometry args={[0.3]} />
-                <meshBasicMaterial color="red" />
+                <meshBasicMaterial color="red" toneMapped={false} />
             </mesh>
 
             <Label

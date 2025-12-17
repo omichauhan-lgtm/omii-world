@@ -3,6 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
 import { Avatar } from './Avatar'
+import { JetpackTrails } from './Particles'
 
 const SPEED = 6
 const ROTATION_SPEED = 5
@@ -91,6 +92,7 @@ export function Player() {
 
             <group ref={avatar}>
                 <Avatar isMoving={isMoving} />
+                <JetpackTrails parentRef={avatar} isMoving={isMoving} />
             </group>
         </>
     )
