@@ -70,12 +70,13 @@
         if (progress === 100) {
           clearInterval(loadInterval);
           revealStartButton();
+          statusText.innerText = "SYSTEM READY.";
+          statusText.style.color = "#00ff41";
         }
       }, 50);
 
       function revealStartButton() {
         startBtn.classList.remove('hidden');
-        statusText.style.display = 'none'; // Clean up UI
       }
 
       // 2. CONSOLIDATED ENTRY LOGIC
@@ -85,14 +86,13 @@
 
         console.log("Entering Omi's World...");
 
-        // A. Handle Audio SAFELY
-        try {
-          audio.volume = 0.5;
-          await audio.play();
+        // A. Handle Audio SAFELY (Don't await, so UI isn't blocked by audio quirks)
+        audio.volume = 0.5;
+        audio.play().then(() => {
           console.log("Audio playing successfully");
-        } catch (err) {
+        }).catch(err => {
           console.error("Audio failed (likely blocked by browser settings):", err);
-        }
+        });
 
         // B. Trigger the "Warp" Animation
         introScreen.classList.add('zoom-out');
