@@ -156,3 +156,82 @@ canvas {
   opacity: 0;
   pointer-events: none;
 }
+/* === SCI-FI INFO CARD === */
+#info-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.6); /* Dim background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: rgba(10, 20, 30, 0.95);
+    border: 2px solid #00ff41; /* Matrix Green */
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+    padding: 30px;
+    width: 400px;
+    font-family: 'Courier New', monospace; /* Fallback to monospace if game font fails */
+    color: #fff;
+    text-align: center;
+    position: relative;
+    clip-path: polygon(
+        0 0, 100% 0, 
+        100% 85%, 90% 100%, 
+        0 100%
+    ); /* Cut corner shape */
+}
+
+#modal-title {
+    color: #00ff41;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px #00ff41;
+}
+
+.modal-line {
+    width: 100%;
+    height: 2px;
+    background: #00ff41;
+    margin-bottom: 20px;
+}
+
+#modal-desc {
+    font-family: 'Inter', sans-serif; /* Readable font for body text */
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+#modal-stats li {
+    list-style: none;
+    background: #222;
+    border: 1px solid #555;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 0.7rem;
+    color: #00ccff;
+}
+
+#close-modal-btn {
+    margin-top: 20px;
+    background: transparent;
+    border: 1px solid #ff0055;
+    color: #ff0055;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+#close-modal-btn:hover {
+    background: #ff0055;
+    color: white;
+}
+
