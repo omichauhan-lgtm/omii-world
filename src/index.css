@@ -11,11 +11,22 @@ body,
   font-family: 'Inter', sans-serif;
 }
 
+/* Add this to your main overlay container class */
+#root>div:first-child,
+.overlay,
 .overlay-text {
   position: absolute;
   pointer-events: none;
+  /* <--- CRITICAL LINE */
   z-index: 10;
   color: white;
   text-transform: uppercase;
   letter-spacing: 2px;
+}
+
+/* But re-enable clicking for buttons/links inside it */
+button,
+a,
+.clickable {
+  pointer-events: auto;
 }

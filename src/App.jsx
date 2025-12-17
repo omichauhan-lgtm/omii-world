@@ -20,8 +20,8 @@ function App() {
         <color attach="background" args={['#5c5cff']} />
         <fog attach="fog" args={['#5c5cff', 10, 40]} />
 
-        <World />
         <Rig />
+        <World />
       </Canvas>
     </>
   )
