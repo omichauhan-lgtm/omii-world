@@ -6,7 +6,7 @@ export function SoundManager() {
 
     useEffect(() => {
         // 1. Find the audio element in index.html
-        const el = document.getElementById('bg-music')
+        const el = document.getElementById('bg-audio')
         if (el) {
             setAudioElement(el)
             // Check if it's already playing (started by Loader)
