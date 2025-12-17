@@ -8,7 +8,7 @@
   <title>omii-world</title>
   <!-- GAME FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/omii-world/assets/index-D3rgj73x.js"></script>
+  <script type="module" crossorigin src="/omii-world/assets/index-1S5ASKRJ.js"></script>
   <link rel="stylesheet" crossorigin href="/omii-world/assets/index-Bx2BBxWX.css">
 </head>
 
@@ -29,7 +29,9 @@
   </div>
 
   <audio id="bg-music" loop>
-    <source src="fight-club.mp3" type="audio/mpeg">
+    <source
+      src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b502e964.mp3?filename=cyberpunk-city-11020.mp3"
+      type="audio/mpeg">
   </audio>
 
   <div id="root"></div>
@@ -76,16 +78,30 @@
         }
       }, 60);
 
-      // 3. ENTER BUTTON CLICK
+      // 3. ENTER BUTTON CLICK (Updated for Debugging)
       btn.addEventListener('click', () => {
-        music.volume = 0.3;
-        music.play().catch(e => console.log("Audio error:", e));
+        console.log("Attempting to play music...");
 
-        loader.style.opacity = '0';
+        // Force volume to 50%
+        music.volume = 0.5;
 
-        setTimeout(() => {
-          loader.style.display = 'none';
-        }, 800);
+        // specific promise handling for audio
+        var playPromise = music.play();
+
+        if (playPromise !== undefined) {
+          playPromise.then(_ => {
+            console.log("Audio started successfully.");
+            // Audio is playing! Now fade out the loader.
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 800);
+          })
+            .catch(error => {
+              console.error("Playback failed:", error);
+              // IF SOUND FAILS, WE STILL LET THEM IN
+              alert("Audio Error: " + error.message + "\n(Check console or browser settings!)");
+              loader.style.display = 'none';
+            });
+        }
       });
     });
   </script>
