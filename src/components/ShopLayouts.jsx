@@ -211,7 +211,7 @@ export function CertificationZone({ position }) {
             </mesh>
 
             <Label
-                title="Certifications"
+                title="CERTIFICATIONS"
                 subtitle="• J.P. Morgan (Quant Research)\n• EA Sports (Software Engineering)"
                 position={[0, 5, 0]}
             />

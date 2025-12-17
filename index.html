@@ -1,13 +1,118 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>omii-world</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>omii-world</title>
+  <!-- GAME FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- INTRO SCREEN -->
+  <div id="intro-screen">
+    <div class="scanlines"></div>
+
+    <div class="intro-content">
+      <div class="logo-container">
+        <h1 class="game-title">OMI'S <span class="highlight">WORLD</span></h1>
+        <p class="subtitle">PORTFOLIO SIMULATION v2.0</p>
+      </div>
+
+      <div class="loader-container">
+        <div id="progress-bar"></div>
+      </div>
+      <p id="status-text">SYSTEM BOOTING...</p>
+
+      <button id="start-btn" class="hidden">
+        <span>PRESS ENTER TO START</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- AUDIO (Removed loop/autoplay to be handled by JS perfectly) -->
+  <audio id="bg-audio" loop>
+    <source
+      src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b502e964.mp3?filename=cyberpunk-city-11020.mp3"
+      type="audio/mpeg">
+  </audio>
+
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- INTRO LOGIC -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const introScreen = document.getElementById('intro-screen');
+      const startBtn = document.getElementById('start-btn');
+      const progressBar = document.getElementById('progress-bar');
+      const statusText = document.getElementById('status-text');
+      const audio = document.getElementById('bg-audio');
+
+      let isEntered = false;
+
+      // 1. FAKE LOADING SEQUENCE
+      let progress = 0;
+      const loadInterval = setInterval(() => {
+        progress += Math.floor(Math.random() * 5) + 2;
+        if (progress > 100) progress = 100;
+
+        progressBar.style.width = `${progress}%`;
+
+        // Techy Status Updates
+        if (progress < 30) statusText.innerText = "INITIALIZING 3D ASSETS...";
+        else if (progress < 60) statusText.innerText = "LOADING TEXTURES...";
+        else if (progress < 90) statusText.innerText = "CONNECTING TO SERVER...";
+        else statusText.innerText = "SYSTEM READY.";
+
+        if (progress === 100) {
+          clearInterval(loadInterval);
+          revealStartButton();
+        }
+      }, 50);
+
+      function revealStartButton() {
+        startBtn.classList.remove('hidden');
+        statusText.style.display = 'none'; // Clean up UI
+      }
+
+      // 2. CONSOLIDATED ENTRY LOGIC
+      const handleEnter = async () => {
+        if (isEntered || progress < 100) return;
+        isEntered = true;
+
+        console.log("Entering Omi's World...");
+
+        // A. Handle Audio SAFELY
+        try {
+          audio.volume = 0.5;
+          await audio.play();
+          console.log("Audio playing successfully");
+        } catch (err) {
+          console.error("Audio failed (likely blocked by browser settings):", err);
+        }
+
+        // B. Trigger the "Warp" Animation
+        introScreen.classList.add('zoom-out');
+
+        // C. Remove the Intro Screen from HTML after animation ends (1.5s)
+        setTimeout(() => {
+          introScreen.style.display = 'none';
+        }, 1500);
+      };
+
+      // 3. LISTENERS (Click & Key)
+      startBtn.addEventListener('click', handleEnter);
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          handleEnter();
+        }
+      });
+    });
+  </script>
+</body>
+
 </html>
