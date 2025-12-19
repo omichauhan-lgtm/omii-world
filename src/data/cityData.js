@@ -40,7 +40,7 @@ export const cityData = [
         type: 'command', // Glowing Octahedrons
         title: "CERTIFICATIONS",
         desc: "VALIDATED TOKENS: Industry-recognized achievements in Quantitative Research and Software Engineering.",
-        stats: ["JP Morgan (Quant)", "EA (Soft Eng)", "Forage"],
+        stats: ["JP Morgan (Quant)", "HackerRank (SQL Adv.)", "EA (Soft Eng)", "Forage"],
         pos: { x: -10, y: 4, z: 12 },
         color: 0xffd700 // Gold
     }

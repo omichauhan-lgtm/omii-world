@@ -212,7 +212,7 @@ export function CertificationZone({ position }) {
 
             <Label
                 title="CERTIFICATIONS"
-                subtitle="• J.P. Morgan (Quant Research)\n• EA Sports (Software Engineering)"
+                subtitle="• J.P. Morgan (Quant Research)\n• HackerRank (SQL Adv.)\n• EA Sports (Software Engineering)"
                 position={[0, 5, 0]}
             />
         </group>
